@@ -8,7 +8,6 @@ workers_dev = true
 
 [site]
 bucket = "./public"
-entry-point = "."
 
 [build]
 command = "npm run build:worker"
