@@ -13,6 +13,7 @@
     "deploy": "npm run build && wrangler publish"
   },
   "dependencies": {
+    "@cloudflare/kv-asset-handler": "^0.2.0",
     "@remix-run/cloudflare-workers": "^1.1.3",
     "@remix-run/react": "^1.1.3",
     "react": "^17.0.2",
