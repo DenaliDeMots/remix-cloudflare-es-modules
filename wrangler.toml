@@ -15,4 +15,5 @@ command = "npm run build:worker"
 watch_dir = "build/index.js"
 
 [build.upload]
-format="service-worker"
+format = "modules"
+main = "./shim.mjs"
