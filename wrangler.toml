@@ -4,6 +4,7 @@ type = "javascript"
 zone_id = ""
 account_id = ""
 route = ""
+workers_dev = true
 
 [site]
 bucket = "./public"

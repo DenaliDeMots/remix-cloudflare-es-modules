@@ -6,6 +6,8 @@ import {
   NotFoundError,
 } from "@cloudflare/kv-asset-handler";
 import * as build from "../build";
+import assetJson from "__STATIC_CONTENT_MANIFEST";
+const ASSET_MANIFEST = JSON.parse(assetJson.default);
 
 const ASSET_PATH = build.assets.url.split("/").slice(0, -1).join("/");
 
@@ -32,27 +34,11 @@ async function handleAsset(request, env, waitUntil) {
     };
     const options = {
       ASSET_NAMESPACE: env.__STATIC_CONTENT,
-      ASSET_MANIFEST: env.__STATIC_CONTENT_MANIFEST,
+      ASSET_MANIFEST,
+      cacheControl: {
+        bypassCache: true,
+      },
     };
-    if (process.env.NODE_ENV === "development") {
-      return await getAssetFromKV(event, {
-        cacheControl: {
-          bypassCache: true,
-        },
-        ...options,
-      });
-    }
-
-    const pathname = new URL(request.url).pathname;
-    if (pathname.startsWith(ASSET_PATH)) {
-      return await getAssetFromKV(event, {
-        cacheControl: {
-          edgeTTL: 31536000,
-          browserTTL: 31536000,
-        },
-        ...options,
-      });
-    }
 
     return await getAssetFromKV(event, options);
   } catch (error) {

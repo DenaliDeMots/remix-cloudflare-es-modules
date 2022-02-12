@@ -11,6 +11,7 @@ build({
   define: {
     "process.env.NODE_ENV": `"${process.env.NODE_ENV}"`,
   },
+  external: ["__STATIC_CONTENT_MANIFEST"],
   plugins: [
     copy({
       assets: {

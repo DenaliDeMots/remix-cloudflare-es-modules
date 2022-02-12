@@ -34,5 +34,5 @@
     "node": ">=14"
   },
   "sideEffects": false,
-  "main": "dist/worker.js"
+  "main": "dist/shim.mjs"
 }
