@@ -1,7 +1,7 @@
 import worker from "worker.js";
 
-const fetch = worker.fetch;
-
 export default {
-  fetch,
+  fetch: worker.fetch,
 };
+
+export const PageCount = worker.PageCount;

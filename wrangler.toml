@@ -17,3 +17,6 @@ watch_dir = "build/index.js"
 [build.upload]
 format = "modules"
 main = "./shim.mjs"
+
+[durable_objects]
+bindings = [{ name = "PAGE_COUNT", class_name = "PageCount"}]

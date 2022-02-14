@@ -9,8 +9,6 @@ import * as build from "../build";
 import assetJson from "__STATIC_CONTENT_MANIFEST";
 const ASSET_MANIFEST = JSON.parse(assetJson.default);
 
-const ASSET_PATH = build.assets.url.split("/").slice(0, -1).join("/");
-
 const platform: ServerPlatform = {};
 const requestHandler = createRequestHandler(build, platform);
 
@@ -50,5 +48,19 @@ async function handleAsset(request, env, waitUntil) {
     }
 
     throw error;
+  }
+}
+
+// A simple
+export class Counter {
+  constructor(state, env) {
+    this.state = state;
+  }
+
+  async fetch(request) {
+    let count = (await this.state.storage.get("count")) || 0;
+    count++;
+    await this.state.storage.put("count", count);
+    return new Response(count);
   }
 }

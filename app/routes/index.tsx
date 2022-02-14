@@ -1,7 +1,20 @@
+import { useLoaderData } from "remix";
+import type { LoaderFunction } from "remix";
+
+export const loader: LoaderFunction = async ({ context }) => {
+  const countId = context.PAGE_COUNT.idFromName("test");
+  const pageCount = context.PAGE_COUNT.get(countId);
+  const count = await (await pageCount.fetch("")).json();
+  console.log(typeof count);
+  return count;
+};
+
 export default function Index() {
+  const count = useLoaderData();
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.4" }}>
       <h1>Welcome to Remix</h1>
+      <h2>You're vistior number: {count}!</h2>
       <ul>
         <li>
           <a
