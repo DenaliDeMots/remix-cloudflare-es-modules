@@ -16,7 +16,7 @@ watch_dir = "build/index.js"
 
 [build.upload]
 format = "modules"
-main = "./shim.mjs"
+main = "./worker.mjs"
 
 [durable_objects]
-bindings = [{ name = "PAGE_COUNT", class_name = "PageCount"}]
+bindings = [{ name = "COUNTER", class_name = "Counter"}]

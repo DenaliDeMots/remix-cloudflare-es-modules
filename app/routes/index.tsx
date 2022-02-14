@@ -2,8 +2,8 @@ import { useLoaderData } from "remix";
 import type { LoaderFunction } from "remix";
 
 export const loader: LoaderFunction = async ({ context }) => {
-  const countId = context.PAGE_COUNT.idFromName("test");
-  const pageCount = context.PAGE_COUNT.get(countId);
+  const countId = context.COUNTER.idFromName("test");
+  const pageCount = context.COUNTER.get(countId);
   const count = await (await pageCount.fetch("")).json();
   console.log(typeof count);
   return count;

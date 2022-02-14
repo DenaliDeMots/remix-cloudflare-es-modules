@@ -7,22 +7,24 @@ import {
 } from "@cloudflare/kv-asset-handler";
 import * as build from "../build";
 import assetJson from "__STATIC_CONTENT_MANIFEST";
-const ASSET_MANIFEST = JSON.parse(assetJson.default);
+const ASSET_MANIFEST = JSON.parse(assetJson);
 
 const platform: ServerPlatform = {};
 const requestHandler = createRequestHandler(build, platform);
 
-export async function fetch(request, env, ctx) {
-  try {
-    let response = await handleAsset(request, env, ctx.waitUntil);
-    if (!response) response = await requestHandler(request, env);
-    return response;
-  } catch (e: any) {
-    return new Response(e.message || e.toString(), {
-      status: 500,
-    });
-  }
-}
+export default {
+  async fetch(request, env, ctx) {
+    try {
+      let response = await handleAsset(request, env, ctx.waitUntil);
+      if (!response) response = await requestHandler(request, env);
+      return response;
+    } catch (e: any) {
+      return new Response(e.message || e.toString(), {
+        status: 500,
+      });
+    }
+  },
+};
 
 async function handleAsset(request, env, waitUntil) {
   try {
