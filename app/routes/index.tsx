@@ -2,10 +2,10 @@ import { useLoaderData } from "remix";
 import type { LoaderFunction } from "remix";
 
 export const loader: LoaderFunction = async ({ context }) => {
-  const countId = context.COUNTER.idFromName("test");
-  const pageCount = context.COUNTER.get(countId);
-  const count = await (await pageCount.fetch("")).json();
-  return count;
+  const id = context.COUNTER.idFromName("home page count");
+  const pageCount = context.COUNTER.get(id);
+  const count = await pageCount.fetch("/increment");
+  return count.json();
 };
 
 export default function Index() {

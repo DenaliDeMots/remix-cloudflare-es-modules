@@ -32,3 +32,13 @@ Once that's done, you should be able to deploy your app:
 ```sh
 npm run deploy
 ```
+
+## Durable Objects
+
+You can write Durable Object classes and bundle them into your Cloudflare Worker! To create your own Durable Object:
+
+1. Create a class and export it from `workers/worker.ts`
+2. Add a binding in `wrangler.toml`
+3. Access the binding from a loader's `context` parameter
+4. ???
+5. Profit!
