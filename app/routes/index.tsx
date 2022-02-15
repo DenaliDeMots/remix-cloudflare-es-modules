@@ -5,7 +5,6 @@ export const loader: LoaderFunction = async ({ context }) => {
   const countId = context.COUNTER.idFromName("test");
   const pageCount = context.COUNTER.get(countId);
   const count = await (await pageCount.fetch("")).json();
-  console.log(typeof count);
   return count;
 };
 
