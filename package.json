@@ -7,8 +7,8 @@
     "build": "remix build",
     "dev": "remix watch",
     "postinstall": "remix setup cloudflare-workers",
-    "build:worker": "NODE_ENV=production node esbuild.js",
-    "dev:worker": "NODE_ENV=development node esbuild.js",
+    "build:worker": "NODE_ENV=production node esbuild-worker.js",
+    "dev:worker": "NODE_ENV=development node esbuild-worker.js",
     "start": "miniflare --build-command \"npm run dev:worker\" --watch",
     "deploy": "npm run build && wrangler publish"
   },
